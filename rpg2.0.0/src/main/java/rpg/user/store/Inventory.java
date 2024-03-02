@@ -9,10 +9,10 @@ import java.util.*;
  * 해당 클래스는 타입 안전 이종 컨테이너 패턴의 변형체이다.
  * Item Class를 상속받는 모든 Item에 대응하는 List를 저장할 수 있다.
  */
-public class InventoryStore {
+public class Inventory {
     private final Map<Class<? extends Item>, List<? extends Item>> userItemStore;
 
-    public InventoryStore() {
+    public Inventory() {
         userItemStore = new HashMap<>();
     }
 
@@ -54,4 +54,16 @@ public class InventoryStore {
         return allItemList;
     }
 
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
+        List<Item> itemList = this.getAll();
+
+        for (Item item : itemList) {
+            stringJoiner.add(item.getName());
+        }
+
+        return stringJoiner.toString();
+
+    }
 }

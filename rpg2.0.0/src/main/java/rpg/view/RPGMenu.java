@@ -378,7 +378,7 @@ public class RPGMenu {
 
     public void loseCharm(int charm) {
         System.out.println("나의 매력이" + charm + " 하락했다.");
-        rpgManager.loseCharm(charm);
+        rpgManager.minusCharm(charm);
     }
 
     public void printCharm() {
@@ -397,7 +397,7 @@ public class RPGMenu {
 
         for (int i = 0; i < npcList.length; i++) {
             // NPC의 이름과 번호를 출력한다.
-            System.out.print((i + 1) + npcList[i].getName());
+            System.out.print((i + 1) + ". " + npcList[i].getName());
             // 마지막에는 구분자 대신 개행 문자를 출력하고
             if (i >= npcList.length - 1) {
                 System.out.println();
