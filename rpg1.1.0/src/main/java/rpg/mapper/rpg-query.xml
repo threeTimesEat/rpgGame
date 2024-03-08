@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- 유저 추가 -->
+    <entry key="insertUser">
+        INSERT
+        INTO TBL_USER (
+        USER_NAME,
+        USER_CHARM,
+        USER_BAG,
+        USER_MONEY
+        )
+        VALUES (?, ?, ?, ?)
+    </entry>
+    <!-- 매력 업데이트 -->
+    <entry key="updateCharm">
+        UPDATE TBL_CHARM
+        SET CHARM = ?
+        WHERE
+        USER_CODE = ? AND
+        NPC_CODE = ?
+    </entry>
+    <!-- 유저 이름 업데이트 -->
+    <entry key="updateUserName">
+        UPDATE TBL_USER
+        SET USER_NAME = ?
+        WHERE
+        USER_CODE = ?
+    </entry>
+    <!-- 유저정보 조회용 쿼리 -->
+    <entry key="selectUserInfo">
+        SELECT
+        *
+        FROM
+        TBL_USER
+        WHERE
+        USER_CODE = ?
+    </entry>
+    <!-- 유저 가방 조회용 쿼리  -->
+    <entry key="selectUserBag">
+        SELECT
+        *
+        FROM
+        TBL_BAG
+        WHERE
+        BAG_CODE = ?
+    </entry>
+    <!--  아이템 조회용 쿼리  -->
+    <entry key="selectItem">
+        SELECT
+        *
+        FROM
+        TBL_ITEM
+        WHERE
+        ITEM_CODE = ?
+    </entry>
+    <!-- 유저 아이템 추가 -->
+    <entry key="insertUserItem">
+        INSERT
+        INTO TBL_BAG (
+        BAG_CODE,
+        ITEM_CODE
+        )
+        VALUES (?, ?)
+        ON DUPLICATE KEY UPDATE
+        BAG_CODE = ?,
+        ITEM_CODE = ?
+    </entry>
+    <!-- 돈 업데이트 -->
+    <entry key="updateUserMoney">
+        UPDATE TBL_USER
+        SET USER_MONEY = ?
+        WHERE
+        USER_CODE = ?
+    </entry>
+    <!-- 호감도 업데이트 -->
+    <entry key="updateUserCharm">
+        UPDATE TBL_USER
+        SET USER_CHARM = ?
+        WHERE
+        USER_CODE = ?
+    </entry>
+    <!-- 외래키 설정 -->
+    <entry key="setFk">
+        SET FOREIGN_KEY_CHECKS = 0;
+    </entry>
+    <!-- 가방 털기 -->
+    <entry key="initBag">
+        TRUNCATE TBL_BAG
+    </entry>
+    <!-- 유저 정보 털기 -->
+    <entry key="initUser">
+        UPDATE TBL_USER
+        SET USER_MONEY = 0
+            , USER_CHARM = 0
+    </entry>
+    <!-- 아이템 버리기 -->
+    <entry key="deleteItem">
+        DELETE FROM TBL_BAG
+        WHERE ITEM_CODE = ?
+    </entry>
+    <!-- 옷 가게의 아이템 조회  -->
+    <entry key="selectClothesList">
+        SELECT
+            B.ITEM_CODE,
+            B.ITEM_NAME,
+            B.ITEM_PRICE,
+            B.ITEM_CHARM
+        FROM
+            TBL_SHOP A
+        JOIN TBL_ITEM B ON (B.ITEM_CODE = A.ITEM_CODE)
+        WHERE
+            B.ITEM_CATEGORY = 1
+    </entry>
+    <!-- 옷 가게의 아이템 조회  -->
+    <entry key="selectGiftList">
+        SELECT
+            B.ITEM_CODE,
+            B.ITEM_NAME,
+            B.ITEM_PRICE,
+            B.ITEM_CHARM
+        FROM
+            TBL_SHOP A
+        JOIN TBL_ITEM B ON (B.ITEM_CODE = A.ITEM_CODE)
+        WHERE
+            B.ITEM_CATEGORY = 2
+    </entry>
+
+</properties>
